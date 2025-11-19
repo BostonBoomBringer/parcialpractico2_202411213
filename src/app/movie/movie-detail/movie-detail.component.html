@@ -1,8 +1,8 @@
-<div class="container mt-4" *ngIf="movie">
-  <h2>{{ movie.title }}</h2>
-  <div class="row">
+<div class="container mt-4" *ngIf="movie" style="background-color: #e3f2fd; padding: 20px; border-radius: 10px;">
+  <h2 style="color: #0d47a1; font-weight: bold;">{{ movie.title }}</h2>
+  <div class="row mt-3">
     <div class="col-md-4">
-      <img class="poster-detail-img img-fluid" [src]="movie.posterImageUrl" alt="{{ movie.title }} poster" />
+      <img class="poster-detail-img img-fluid rounded shadow-sm" [src]="movie.posterImageUrl" alt="{{ movie.title }} poster" />
     </div>
     <div class="col-md-8">
       <p><strong>Director:</strong> {{ movie.director }}</p>
@@ -11,12 +11,19 @@
       <p><strong>Género:</strong> {{ movie.genre }}</p>
       <p><strong>Sinopsis:</strong> {{ movie.description }}</p>
 
-      <p><strong>Duración:</strong> {{ getFormattedDuration() }}</p>
+      <p><strong>Duración:</strong> 
+        <span style="background-color: #bbdefb; padding: 5px 10px; border-radius: 5px;">
+          {{ getFormattedDuration() }}
+        </span>
+      </p>
 
-      <h3>Reparto:</h3>
-      <app-actor-list [actors]="movie.cast"></app-actor-list>
+      <h3 style="margin-top: 20px;">Reparto:</h3>
+      <div style="background-color: #f5f5f5; padding: 10px; border-radius: 5px;">
+        <app-actor-list [actors]="movie.cast"></app-actor-list>
+      </div>
 
-      <button class="btn btn-secondary mt-3" (click)="goBack()">← Regresar al listado</button>
+      <button class="btn btn-outline-primary mt-4" (click)="goBack()">← Regresar al listado</button>
     </div>
   </div>
 </div>
+
