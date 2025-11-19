@@ -1,4 +1,4 @@
 # Parcial Práctico 2
 
-- Nombre:
-- código:
+- Nombre: Luis Daniel Olarte Castillo
+- código: 202411213
