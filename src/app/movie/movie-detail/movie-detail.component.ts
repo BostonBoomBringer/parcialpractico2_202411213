@@ -1,12 +1,20 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { MovieService } from '../../services/movie.service';
 
 @Component({
   selector: 'app-movie-detail',
-  standalone: false,
-  templateUrl: './movie-detail.component.html',
-  styleUrl: './movie-detail.component.css',
+  templateUrl: './movie-detail.component.html'
 })
 export class MovieDetailComponent implements OnInit {
-  @Input() movie: any;
-  ngOnInit(): void {}
+  movie: any;
+
+  constructor(private route: ActivatedRoute, private movieService: MovieService) {}
+
+  ngOnInit(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.movieService.getMovieDetail(id).subscribe(data => {
+      this.movie = data;
+    });
+  }
 }

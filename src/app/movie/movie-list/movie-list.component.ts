@@ -1,24 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Movie } from '../Movie';
-import { moviesData } from '../moviesData';
+import { MovieService } from '../../services/movie.service';
 
 @Component({
   selector: 'app-movie-list',
-  standalone: false,
-  templateUrl: './movie-list.component.html',
-  styleUrl: './movie-list.component.css',
+  templateUrl: './movie-list.component.html'
 })
 export class MovieListComponent implements OnInit {
-  movies: Movie[] = [];
-  selected: Boolean = false;
-  selectedMovie: Movie | null = null;
+  movies: any[] = [];
 
-  onSelect(movie: Movie) {
-    this.selectedMovie = movie;
-    this.selected = true;
-  }
+  constructor(private movieService: MovieService) {}
 
-  ngOnInit() {
-    this.movies = moviesData;
+  ngOnInit(): void {
+    this.movieService.getMovies().subscribe(data => {
+      this.movies = data;
+    });
   }
 }
