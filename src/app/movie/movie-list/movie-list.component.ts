@@ -1,18 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-movie-list',
-  templateUrl: './movie-list.component.html'
+  selector: 'app-movie-list', 
+  standalone: false,
+  templateUrl: './movie-list.component.html',
+  styleUrls: ['./movie-list.component.css']
 })
 export class MovieListComponent implements OnInit {
   movies: any[] = [];
 
-  constructor(private movieService: MovieService) {}
+  constructor(private movieService: MovieService, private router: Router) {}
 
   ngOnInit(): void {
     this.movieService.getMovies().subscribe(data => {
       this.movies = data;
     });
+  }
+
+  goToDetail(id: number): void {
+    this.router.navigate(['/movies', id]);
   }
 }

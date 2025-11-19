@@ -1,5 +1,8 @@
-<ul>
-  @for(actor of actors; track actor.id) {
-  <li>{{ actor.name }}</li>
+<ul class="list-group">
+  @for (actor of actors; track actor.id) {
+    <li class="list-group-item">
+      {{ actor.name }} - Popularidad: {{ actor.popularity }}
+    </li>
   }
 </ul>
+<p class="mt-2"><strong>Promedio de popularidad:</strong> {{ getPopularityAverage() | number:'1.1-2' }}</p>
